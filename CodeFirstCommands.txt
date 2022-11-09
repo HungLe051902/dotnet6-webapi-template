@@ -1,0 +1,27 @@
+# Entity Framework Core Code first command
+// Command Code based migration
+------------------------------------------------------------------------------------------------------------------------------------
+
+##  Add-Migration:
+	Add-Migration -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API" -Name "[MigrationName]"
+
+##  Update-Database:
+	Update-Database -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API"
+
+##  Remove the last migration if it is not applied to the database: remove the last created migration files and revert the model snapshot.
+    Remove-Migration -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API"
+
+
+##  Revert migration to [MigrationName]
+	Update-Database -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API" -Migration "[MigrationName]"
+
+
+##  Generate SQL script for migration 
+    Script-Migration
+
+### eg: To update a migration to sql script, run command:
+#### //from Source to latest:
+	Script-Migration -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API" -From "[SourceMigration]"
+
+#### //from Source to Target:
+	Script-Migration -Context "ApplicationDbContext" -StartupProject "BookingService.PresentationLayer.API" -From "[SourceMigration]" -To "[TargetMigration]"
